@@ -28,9 +28,13 @@ public:
 
 class Gunslinger : public virtual Person
 {
-public:
+friend class BadDude;
+
+private:
     int cuts;
     float time_to_draw;
+
+public:
 
     Gunslinger (string name_, string surname_, int cuts_,  float time_to_draw_)
     : Person (name_, surname_), // wywolujemy konstruktor klasy bazowej
@@ -45,8 +49,7 @@ public:
 
     void Show()
     {
-        ios_base::sync_with_stdio(false);
-        cout << "Name: " << name << " " << " surname: " << surname << endl;
+        Person::Show();
         cout << "Number of cuts on a gun: " << cuts << endl;
         cout << "Estimated time to draw a weapon: " << time_to_draw << endl;
     }
@@ -78,9 +81,9 @@ public:
     PokerPlayer (name_, surname_)
     {}
 
-    int Gdraw()
+    float Gdraw()
     {
-        return BadDude::time_to_draw;
+        return time_to_draw; // time_t_draw jest prywatny
     }
 
     int Cdraw()
